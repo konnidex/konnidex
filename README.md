@@ -220,7 +220,6 @@ Submit
     <img draggable="true" class="player-img keepers" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444632301035192330/7.png?ex=692d6a2c&is=692c18ac&hm=f2153d1714a02a2475fc4dbded86b0a84d826f257775c78d87c7994507dcffd6&">
     <img draggable="true" class="player-img keepers" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444632220320010340/1.png?ex=692d6a19&is=692c1899&hm=77a4d9d37f0da625953cefbd66f12523b33efa36c6ae808615c90b7c14843f80&">
     <img draggable="true" class="player-img keepers" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444633494008365228/4.png?ex=692d6b48&is=692c19c8&hm=e0aa4aa6b71e24b97230abb1f599d78e4014540b538187c432a1b106f3a29f8e&">
-
 </div>
 
 <script>
