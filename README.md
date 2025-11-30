@@ -1,16 +1,311 @@
-## Hi there 👋
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>KD | TOTY</title>
 
-<!--
-**konnidex/konnidex** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+<style>
+body {
+    background: url("https://cdn.discordapp.com/attachments/1245333107863977985/1444641638818254858/BACK.PNG?ex=692d72de&is=692c215e&hm=7fcd43d4c83eab31857bc6e160cc867c968f57c54ca10bff09cf6c3819ca6843&") no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+}
 
-Here are some ideas to get you started:
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+.formation {
+    width: 600px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 120px);
+    gap: 15px;
+}
+
+.box {
+    width: 110px;
+    height: 110px;
+    background: #0e3460;
+    border: 2px solid #d4c369;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+#LW { grid-column: 1; grid-row: 1; }
+#ST { grid-column: 3; grid-row: 1; }
+#RW { grid-column: 5; grid-row: 1; }
+
+#CM1 { grid-column: 2; grid-row: 2; }
+#CM2 { grid-column: 3; grid-row: 2; }
+#CM3 { grid-column: 4; grid-row: 2; }
+
+#LB { grid-column: 1; grid-row: 3; }
+#CB1 { grid-column: 2; grid-row: 3; }
+#CB2 { grid-column: 4; grid-row: 3; }
+#RB { grid-column: 5; grid-row: 3; }
+
+#GK { grid-column: 3; grid-row: 4; }
+
+.tabs {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.tabs button {
+    padding: 10px 25px;
+    font-size: 17px;
+    cursor: pointer;
+    border: none;
+    background: #0e3460;
+    color: #d4c369;
+    border-radius: 5px;
+}
+
+.tabs button.active {
+    background: #0d47a1;
+}
+
+.slider-container {
+    margin-top: 40px;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+.player-img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    cursor: grab;
+    margin: 5px;
+    display: inline-block;
+}
+</style>
+</head>
+<body>
+<p style="
+    position: absolute;
+    right: 90px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #d4c369;
+    font-size: 18px;
+    text-align: right;
+    margin: 0;
+">
+    *Take screenshot and submit vote
+</p>
+
+<a style="
+background:#0e3460;
+color:#d4c369;
+position:absolute;
+right:243px;
+/* button placed 40px under the text */
+top:calc(50% + 40px);
+font-size:20px;
+padding:12px 22px;
+border-radius:12px;
+text-decoration:none;
+font-weight:600;
+box-shadow:0 4px 10px rgba(0,0,0,0.3);
+" 
+class="btn btn-primary" 
+href="https://tally.so/r/KYpldK" 
+target="_blank" 
+rel="noopener noreferrer">
+Submit
+</a>
+
+
+
+<div class="formation">
+    <div class="box" id="LW" data-type="attackers">ATT</div>
+    <div class="box" id="ST" data-type="attackers">ATT</div>
+    <div class="box" id="RW" data-type="attackers">ATT</div>
+
+    <div class="box" id="CM1" data-type="midfielders">MID</div>
+    <div class="box" id="CM2" data-type="midfielders">MID</div>
+    <div class="box" id="CM3" data-type="midfielders">MID</div>
+
+    <div class="box" id="LB" data-type="defenders">DEF</div>
+    <div class="box" id="CB1" data-type="defenders">DEF</div>
+    <div class="box" id="CB2" data-type="defenders">DEF</div>
+    <div class="box" id="RB" data-type="defenders">DEF</div>
+
+    <div class="box" id="GK" data-type="keepers">GK</div>
+
+</div>
+
+<div class="tabs">
+    <button class="tab-btn active" data-type="attackers">Attackers</button>
+    <button class="tab-btn" data-type="midfielders">Midfielders</button>
+    <button class="tab-btn" data-type="defenders">Defenders</button>
+    <button class="tab-btn" data-type="keepers">Goalkeepers</button>
+</div>
+
+<div class="slider-container" id="playerSlider">
+    <!-- Attackers -->
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443439580136341686/43.png?ex=692a64dd&is=6929135d&hm=ff0925991ff0e6e93e0745dd147f2ca4c5eae073aa2925199247861b3aba5bce&">
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443911011877785712/50.png?ex=692aca6b&is=692978eb&hm=0168adf76b3b38fbc42419ead76b7ceed713c1847f9a3aa6f76cc6fe56a15d18&">
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443925865263005696/45.png?ex=692ad841&is=692986c1&hm=9e5d3a2b7386fbf01e8b74b503bfb946d252ec2e19b439521b6d5249c9beed25&">
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443925866559045642/56.png?ex=692ad841&is=692986c1&hm=62c8a785e972a43fcb73c7b04fe9dadb9f0bae2dc067178374c1144c73cf9fa5&">
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443925866865496176/49.png?ex=692ad841&is=692986c1&hm=51a44fec1d3ddfcc008c8cb0f8573c1c476edb639608feacb643f0ad379450ad&">
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443925867188322315/46.png?ex=692ad841&is=692986c1&hm=a707c2f7b79bb46c65be2ad3d88427141e51050e0dfcb5e0ddb84d159ef582c0&">
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443925866156523622/57.png?ex=692ad841&is=692986c1&hm=5ae715cb49aaa630f0b47fb9abf32c24ca8d19268fb3992bc0c2244e1e977e37&">
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443926838857437225/48.png?ex=692ad929&is=692987a9&hm=c4d4f9f928d18203ddc4d44c8197bf28540792eb1bd508ec779275fc595f9494&">
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444268603049377922/55.png?ex=692c1774&is=692ac5f4&hm=c088af10462f12315788bf37bb013ee6badc6b3ee7875cce07acc6daf32bd2b8&">
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444274236217888798/53.png?ex=692c1cb3&is=692acb33&hm=ea402c7ca81c794ac2d80154f7479b09daf5d888da786e44c34906e4e9adda4e&">
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443925865577582764/44.png?ex=692ad841&is=692986c1&hm=599ee08a4adea06391a77eff4142adef6ef0cd16776223fa39a992ecdd24815b&">
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444268657122349107/47.png?ex=692c1781&is=692ac601&hm=4fbf7c0168ead993bef5c1d83261a692c7e6da3a2989c17093300619e30fd79f&">
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444268665296916664/52.png?ex=692c1783&is=692ac603&hm=f1572a38125cb49c626abda3093989e7e45e00ebdd857f386ef79bdb7dc3fa6f&">
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444272679128535182/54.png?ex=692c1b3f&is=692ac9bf&hm=abb6dbe61c458b757810648e6293709d4801ceef839c43a0aa2398a2d5f37a42&">
+    <img draggable="true" class="player-img attackers" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443440316186103808/51.png?ex=692a658d&is=6929140d&hm=e6192ea3004fe3a562bcb1e8472140f98ae4003939f111440568f9f4335f37d1&">
+    <!-- Midfielders -->
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443439591083343923/34.png?ex=692a64e0&is=69291360&hm=3d159296ba4c156d37ee18b441729f2aa5e05b062641142da75de5d09d95139e&">
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443910810534674515/33.png?ex=692aca3b&is=692978bb&hm=2381d0018e70c25ca8a692c501ebb76b417553937205198a8d59d9260968b5eb&">
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443923417601540206/38.png?ex=692ad5f9&is=69298479&hm=3861b65eb75d434f241954ef9adef2f3c3b497d44c21be1814e7468abe3b72e1&">
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443910792318685284/42.png?ex=692aca37&is=692978b7&hm=09cad380188bf0a0b4fe700607ea4c2075cee80b309d927a4395437091acdc61&">
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443910798991691826/28.png?ex=692aca39&is=692978b9&hm=2a5482ecd93af858da82ff04f6e7d4226d0efe13e37d411c2fbd96a0fdf01924&">
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443923402648977449/31.png?ex=692ad5f5&is=69298475&hm=2fedff319af16aa4af4af7546407c97ba53672702883352e3230d2a425cd58af&">
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443923770380386384/40.png?ex=692ad64d&is=692984cd&hm=91e73cd7f6d8a9f1e9d30d23e4a1419efc3cc1fa6212c847f87fa62051c980e3&">
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443923790441742458/29.png?ex=692ad652&is=692984d2&hm=20aa9fd66ccf14f3f9f19a0d70d4f7f421e32303532b8142374ed07ae9701280&">
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443923746988490783/35.png?ex=692ad648&is=692984c8&hm=9fa9fabcd55180f53b9758f1351a1c0d72e9734a89b16c0b4d306f10004579b8&">
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443923718404444322/39.png?ex=692ad641&is=692984c1&hm=1e2ad6597ff34251a51d819b073b480b0974e10365efeb2d23a19b23448b5e14&">
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444268532002193499/30.png?ex=692c1763&is=692ac5e3&hm=4b6e3b59b88196ce3ec54fb13811d52903cb82cd7a7ae119b03f07e9c72d9937&">
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443440332191694990/36.png?ex=692a6591&is=69291411&hm=86e9c2b834b105a8f5a9f2089084e8995eaa62cf2df0888bce36da5ddf56fb44&">
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444277614771568741/37.png?ex=692c1fd8&is=692ace58&hm=a1e15c4c8f25b11db5f59d13e3078b403c85b3c24a8aae7260315225cd3a90a0&">
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444277614440087632/32.png?ex=692c1fd8&is=692ace58&hm=245c1e60444eecda21bf08fe6f56211ce2ffd871298e4d5fc2efe56cbf167f05&">
+    <img draggable="true" class="player-img midfielders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444632034315206777/41.png?ex=692d69ec&is=692c186c&hm=7fa611a569d54bf120e0a4d908c2f30b78d1f45c21ee3f52bca385ede4287ffd&">
+
+    <!-- Defenders -->
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443439538453217390/18.png?ex=692a64d3&is=69291353&hm=6d6165e7d003aaa7eea05f74c41b24b0eba93576c897ff35bf81b2286c6c1ff7&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443440299060756591/27.png?ex=692a6589&is=69291409&hm=44a81176da683a700214922d0d8988245d842588f959ca467e6cd49d760f5d56&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443440341700186123/19.png?ex=692a6593&is=69291413&hm=9076c7a19239ed8b0fc4979e56d8d9a6aa00dab0c4dcecdf172452158554f374&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444268573408100432/20.png?ex=692c176d&is=692ac5ed&hm=1fc5b15d93856765102f1e42c3edac3b64015d03b4ba88598ce76101344b3256&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444268563497091093/14.png?ex=692c176a&is=692ac5ea&hm=5dad65c35a62967896aa6786f2978df55a63c2f65a230b3dca19230ff2daa7be&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444270242585907233/10.png?ex=692c18fb&is=692ac77b&hm=dc030f1d4574e66a5602e374b045618061f2b0415ddee01351c0c00994c86fdf&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444270251792535572/9.png?ex=692c18fd&is=692ac77d&hm=6a373bdd0f9653467ea7d7f0655ff5ea8e06bad12b11269dde6d7a1801a96874&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444634310400413706/8.png?ex=692d6c0b&is=692c1a8b&hm=10ac6cf794996ba6a71a0512c5ff375f440a39a122db75edad7351e6930422d6&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444270261351485500/17.png?ex=692c18ff&is=692ac77f&hm=564f740a0c8867a105b3cf2dd047e1450c481d73ab6515021e9393189a7ea284&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444270273535672513/22.png?ex=692c1902&is=692ac782&hm=c2b93215f446306f39ee1647507b41d5246451560e0abfa09426628580be067a&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444270235573289083/23.png?ex=692c18f9&is=692ac779&hm=00347b7fbad3e39544f9f9efbcb1a05a427bbc80ba22c3af097a0f4a862bbb37&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444634181689802804/15.png?ex=692d6bec&is=692c1a6c&hm=4d77a03acdb3a9ad91d09a944429c5937a855674a8b19312d54df6c19c1e515f&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444633976051601409/25.png?ex=692d6bbb&is=692c1a3b&hm=a125e8080ecbeb814a6a13f5865a4c0b02e2db5ea5484010c50c025dbbd0db16&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444634202653069433/16.png?ex=692d6bf1&is=692c1a71&hm=e8c46cc6edb07f829fd5df43d4ebcb4b217036b1006feb5d1c581cdb27d1c410&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444634299403075664/13.png?ex=692d6c08&is=692c1a88&hm=13eda0a84f6ca90098a1adfcfbe9efc90bd247b108dcd0ae513136b4585de1bb&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444634174903550015/11.png?ex=692d6beb&is=692c1a6b&hm=08e93d55c730fa4ee61f8b53eb1fb1bb1bf8717eca2345d4dececcc61b780c10&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444634108469841991/21.png?ex=692d6bdb&is=692c1a5b&hm=4f7494a5c12f40bd073d5b9063962e1715a9beee4b2df9114653427caf3023bf&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444633998033686602/26.png?ex=692d6bc1&is=692c1a41&hm=ce0761cda4c95352286927b707162c1c03467a90956ddc277b2d178a20ca835a&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444635508578717778/24.png?ex=692d6d29&is=692c1ba9&hm=53febaee3cbd423e74318fff399f635a8690016ecc051ac524a089e19187c10d&">
+    <img draggable="true" class="player-img defenders" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444635539041947731/12.png?ex=692d6d30&is=692c1bb0&hm=bb5fbfd2ffdfeb9c83164ee407b5727d89600a1b79cc2e2ce4aee7c9c21ceae3&">
+
+    <!-- Keepers -->
+    <img draggable="true" class="player-img keepers" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443439611090178118/2.png?ex=692a64e5&is=69291365&hm=867aad33c0437dc68e7256f5d30c881d8681ccc5c2cfa18227a424a5f6fe6352&">
+    <img draggable="true" class="player-img keepers" src="https://cdn.discordapp.com/attachments/1442091568193601557/1443911023966027837/3.png?ex=692aca6e&is=692978ee&hm=905cd14f14cdfed16270eaf4fee3bf653bfa79a3f0fcf9cb2cf861fe52f9b2fb&">
+    <img draggable="true" class="player-img keepers" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444632342118535299/5.png?ex=692d6a36&is=692c18b6&hm=fd48d44e9e2d37640c2f43b42a8a0869a6372ea58d0be0739a3963a92133dd13&">
+    <img draggable="true" class="player-img keepers" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444632388486303766/6.png?ex=692d6a41&is=692c18c1&hm=53c683d524bca9800896fe2403cce2d782007be1300136e8e55d20219fe9f722&">
+    <img draggable="true" class="player-img keepers" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444632301035192330/7.png?ex=692d6a2c&is=692c18ac&hm=f2153d1714a02a2475fc4dbded86b0a84d826f257775c78d87c7994507dcffd6&">
+    <img draggable="true" class="player-img keepers" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444632220320010340/1.png?ex=692d6a19&is=692c1899&hm=77a4d9d37f0da625953cefbd66f12523b33efa36c6ae808615c90b7c14843f80&">
+    <img draggable="true" class="player-img keepers" src="https://cdn.discordapp.com/attachments/1245333107863977985/1444633494008365228/4.png?ex=692d6b48&is=692c19c8&hm=e0aa4aa6b71e24b97230abb1f599d78e4014540b538187c432a1b106f3a29f8e&">
+
+</div>
+
+<script>
+let draggedPlayer = null;
+let draggedFromBox = null;
+
+// DRAG START
+document.addEventListener("dragstart", e => {
+    if (e.target.classList.contains("player-img")) {
+        draggedPlayer = e.target;
+        draggedFromBox = draggedPlayer.parentElement.classList.contains("box") ? draggedPlayer.parentElement : null;
+    }
+});
+
+// DROP INTO TEAM
+document.querySelectorAll(".box").forEach(box => {
+    box.addEventListener("dragover", e => e.preventDefault());
+
+    box.addEventListener("drop", () => {
+        if (!draggedPlayer) return;
+
+        let requiredType = box.dataset.type;
+        let playerType = [...draggedPlayer.classList].find(c =>
+            ["attackers","midfielders","defenders","keepers"].includes(c)
+        );
+
+        // Only allow same category
+        if (requiredType === playerType) {
+
+            if (box.children.length > 0) {
+                let existingPlayer = box.children[0];
+
+                // Swap only if dragged player is from another box
+                if (draggedFromBox) {
+                    draggedFromBox.appendChild(existingPlayer); // Move existing player back to original box
+                } else {
+                    slider.appendChild(existingPlayer); // If dragged from slider, move existing player back to slider
+                }
+            }
+
+            box.innerHTML = "";
+            box.appendChild(draggedPlayer); // Move dragged player
+        }
+
+        draggedPlayer = null;
+        draggedFromBox = null;
+    });
+});
+
+// DROP BACK TO SLIDER
+const slider = document.getElementById("playerSlider");
+slider.addEventListener("dragover", e => e.preventDefault());
+slider.addEventListener("drop", () => {
+    if (!draggedPlayer) return;
+
+    slider.appendChild(draggedPlayer);
+    draggedPlayer = null;
+    draggedFromBox = null;
+});
+
+// TAB FILTERING (ONLY AFFECT SLIDER)
+document.querySelectorAll(".tab-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        let type = btn.dataset.type;
+        slider.querySelectorAll(".player-img").forEach(img => {
+            img.style.display = img.classList.contains(type) ? "inline-block" : "none";
+        });
+    });
+});
+
+// DEFAULT CATEGORY ON PAGE LOAD
+window.onload = () => {
+    let defaultType = "attackers";
+    slider.querySelectorAll(".player-img").forEach(img => {
+        img.style.display = img.classList.contains(defaultType) ? "inline-block" : "none";
+    });
+};
+</script>
+
+
+
+
+
+</body>
+</html>
