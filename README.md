@@ -21,6 +21,7 @@ body {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(4, 120px);
     gap: 15px;
+    color:#d4c369;
 }
 
 .box {
@@ -261,7 +262,7 @@ body {
     color: #d4c369;
     font-size: 18px;
 ">
-    *Take screenshot and submit vote
+    *Slide the visible slider , add the players to the team <br>take screenshot and submit vote.
 </p>
 
 <a style="
