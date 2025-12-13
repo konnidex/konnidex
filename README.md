@@ -136,32 +136,30 @@ body {
 #playerSlider {
   display: flex;
   gap: 12px;
-  overflow-x: scroll;        /* force scrollbar */
+  overflow-x: auto;              /* make scrollable */
   overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch; /* momentum scrolling on iOS */
   scroll-behavior: smooth;
+  touch-action: pan-x;           /* allow horizontal swipe even on children */
+  cursor: grab;
 }
 
-/* FORCE scrollbar visibility (mobile + desktop) */
+#playerSlider:active {
+  cursor: grabbing;
+}
+
+/* Optional scrollbar styling (visible on Android / PC) */
 #playerSlider::-webkit-scrollbar {
-  height: 10px;              /* visible on mobile */
+  height: 8px;
 }
-
-#playerSlider::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.15);
-  border-radius: 10px;
-}
-
 #playerSlider::-webkit-scrollbar-thumb {
   background: #d4c369;
   border-radius: 10px;
 }
-
-/* Firefox */
-#playerSlider {
-  scrollbar-width: auto;
-  scrollbar-color: #d4c369 rgba(255,255,255,0.15);
+#playerSlider::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.15);
 }
+
 
 
 </style>
@@ -330,6 +328,8 @@ document.querySelectorAll(".player-img").forEach(img => {
     });
 
     img.addEventListener("touchmove", e => {
+        if (!draggedPlayer) return; // allow normal slider scroll
+
         let t = e.touches[0];
         touchClone.style.left = t.clientX - 45 + "px";
         touchClone.style.top = t.clientY - 45 + "px";
@@ -344,7 +344,7 @@ document.querySelectorAll(".player-img").forEach(img => {
             );
         });
 
-        e.preventDefault();
+        e.preventDefault(); // only prevent scroll when dragging player
     });
 
     img.addEventListener("touchend", () => {
@@ -425,6 +425,7 @@ window.onload = () => {
         }
     });
 };
+
 
 
 </script>
