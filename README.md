@@ -133,6 +133,14 @@ body {
 .slider-container button:first-child { left: 0; }
 .slider-container button:last-child { right: 0; }
 
+#playerSlider {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
 
 </style>
 </head>
