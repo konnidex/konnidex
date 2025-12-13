@@ -262,7 +262,7 @@ body {
     color: #d4c369;
     font-size: 18px;
 ">
-    *Slide the visible slider , add the players to the team <br>take screenshot and submit vote.
+    *Swipe the visible slider , add players <br>take screenshot and submit vote.
 </p>
 
 <a style="
