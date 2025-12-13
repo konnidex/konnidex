@@ -426,6 +426,47 @@ window.onload = () => {
     });
 };
 
+let isDraggingSlider = false;
+let startX = 0;
+let scrollLeft = 0;
+
+slider.addEventListener("pointerdown", e => {
+  if (e.target.classList.contains("player-img")) return;
+
+  isDraggingSlider = true;
+  startX = e.clientX;
+  scrollLeft = slider.scrollLeft;
+
+  // temporarily disable selection and pointer events on players
+  slider.querySelectorAll(".player-img").forEach(img => {
+    img.style.userSelect = "none";
+    img.style.pointerEvents = "none";
+  });
+
+  slider.style.cursor = "grabbing";
+});
+
+slider.addEventListener("pointermove", e => {
+  if (!isDraggingSlider) return;
+  const dx = e.clientX - startX;
+  slider.scrollLeft = scrollLeft - dx;
+});
+
+const stopSliderDrag = () => {
+  if (!isDraggingSlider) return;
+  isDraggingSlider = false;
+
+  slider.querySelectorAll(".player-img").forEach(img => {
+    img.style.userSelect = "";
+    img.style.pointerEvents = "";
+  });
+
+  slider.style.cursor = "grab";
+};
+
+slider.addEventListener("pointerup", stopSliderDrag);
+slider.addEventListener("pointercancel", stopSliderDrag);
+slider.addEventListener("pointerleave", stopSliderDrag);
 
 
 </script>
