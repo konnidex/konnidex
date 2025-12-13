@@ -136,11 +136,33 @@ body {
 #playerSlider {
   display: flex;
   gap: 12px;
-  overflow-x: auto;
+  overflow-x: scroll;        /* force scrollbar */
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
 }
+
+/* FORCE scrollbar visibility (mobile + desktop) */
+#playerSlider::-webkit-scrollbar {
+  height: 10px;              /* visible on mobile */
+}
+
+#playerSlider::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.15);
+  border-radius: 10px;
+}
+
+#playerSlider::-webkit-scrollbar-thumb {
+  background: #d4c369;
+  border-radius: 10px;
+}
+
+/* Firefox */
+#playerSlider {
+  scrollbar-width: auto;
+  scrollbar-color: #d4c369 rgba(255,255,255,0.15);
+}
+
 
 
 </style>
@@ -415,4 +437,5 @@ window.onload = () => {
 
 </body>
 </html>
+
 
